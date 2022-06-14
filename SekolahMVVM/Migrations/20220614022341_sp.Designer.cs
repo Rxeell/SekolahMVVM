@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SekolahMVVM.Models;
 
@@ -11,9 +12,10 @@ using SekolahMVVM.Models;
 namespace SekolahMVVM.Migrations
 {
     [DbContext(typeof(SiswaDbContext))]
-    partial class SiswaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220614022341_sp")]
+    partial class sp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,30 +101,7 @@ namespace SekolahMVVM.Migrations
 
                     b.HasKey("IdSiswaPelajaran");
 
-                    b.HasIndex("IdPelajaran");
-
-                    b.HasIndex("IdSiswa");
-
                     b.ToTable("SiswaPelajarans");
-                });
-
-            modelBuilder.Entity("SekolahMVVM.Models.SiswaPelajaran", b =>
-                {
-                    b.HasOne("SekolahMVVM.Models.MataPelajaran", "MataPelajaran")
-                        .WithMany()
-                        .HasForeignKey("IdPelajaran")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SekolahMVVM.Models.Siswa", "Siswa")
-                        .WithMany()
-                        .HasForeignKey("IdSiswa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MataPelajaran");
-
-                    b.Navigation("Siswa");
                 });
 #pragma warning restore 612, 618
         }

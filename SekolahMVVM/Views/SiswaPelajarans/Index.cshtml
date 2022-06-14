@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SekolahMVVM.Models.SiswaPelajaran>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+@*            <th>
+                @Html.DisplayNameFor(model => model.IdSiswa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPelajaran)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Siswa.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Siswa.Alamat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.IdSiswa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPelajaran)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Siswa.Name.ToString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Siswa.Alamat.ToString())
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdSiswaPelajaran">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdSiswaPelajaran">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdSiswaPelajaran">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
